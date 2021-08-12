@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:dart_twitter_api/twitter_api.dart';
+import 'package:dartz/dartz.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:http/http.dart';
 import 'package:twtr/environment_config.dart';
 
 final twtrApiProvider = Provider<TwitterApi>((ref) {
@@ -36,7 +40,7 @@ class TwitterRepository {
       final tweet = await _twtrApi.tweetService.update(status: status);
       return Right(tweet.fullText);
     } on Response catch (response) {
-      return Left(Failure(response.reasonPhrase));
+      return Left(Failure(response.reasonPhrase as String));
     } on SocketException catch (_) {
       return Left(Failure('No Internet Connection!'));
     }
