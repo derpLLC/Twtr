@@ -15,3 +15,8 @@ final twtrApiProvider = Provider<TwitterApi>((ref) {
 
   return twtrApi;
 });
+
+class Failure {
+  Failure(this.message);
+  final String message;
+}
