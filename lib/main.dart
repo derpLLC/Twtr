@@ -40,6 +40,15 @@ class MyHomePage extends HookWidget {
               ),
             ),
           ),
+          Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Spacer(),
+                CustomInputField(textEditingController: tweetTextEditingController),
+              ],
+            ),
+          ),
         ],
       ),
     );
