@@ -75,6 +75,10 @@ class CustomInputField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: textEditingController,
+      keyboardType: TextInputType.multiline,
+      minLines: 1,
+      maxLines: 4,
+      maxLength: 280,
     );
   }
 }
