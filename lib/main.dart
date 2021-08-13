@@ -1,3 +1,4 @@
+import 'package:dart_twitter_api/api/tweets/data/tweet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final tweetTextEditingController = useTextEditingController();
+    final textEditingController = useTextEditingController();
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -58,9 +59,10 @@ class MyHomePage extends HookWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Spacer(),
+                TweetResponse(),
                 CustomInputField(
-                  onPressed: () => postTweet(context, tweetTextEditingController),
-                    textEditingController: tweetTextEditingController,
+                  onPressed: () => postTweet(context, textEditingController),
+                  textEditingController: textEditingController,
                 ),
               ],
             ),
@@ -77,14 +79,15 @@ class MyHomePage extends HookWidget {
     final result = await context
         .read(twitterControllerProvider)
         .postTweet(tweetTextEditingController.text);
-    if(result.isRight()) {
+    if (result.isRight()) {
       tweetTextEditingController.clear();
     }
   }
 }
 
 class CustomInputField extends StatelessWidget {
-  const CustomInputField({Key? key, required this.textEditingController, required this.onPressed})
+  const CustomInputField(
+      {Key? key, required this.textEditingController, required this.onPressed})
       : super(key: key);
 
   final TextEditingController textEditingController;
@@ -117,6 +120,27 @@ class CustomInputField extends StatelessWidget {
         fillColor: Color(0xffE9EFFD),
         filled: true,
       ),
+    );
+  }
+}
+
+class TweetResponse extends HookWidget {
+  @override
+  Widget build(BuildContext context) {
+    final tweetControllerState = useProvider(twitterControllerProvider);
+    final theme = Theme.of(context).textTheme.headline6!.copyWith(
+          color: const Color(0xff2F3A5D),
+        );
+    return tweetControllerState.when(
+      data: (data) => Text(data.isEmpty ? "Write a new tweet" : 'Tweet: $data',
+          style: theme),
+      loading: () => CircularProgressIndicator(),
+      error: (err, sr) {
+        if (err is Failure) {
+          return Text("An error occured");
+        }
+        return Text('An unexpected error occured', style: theme);
+      },
     );
   }
 }

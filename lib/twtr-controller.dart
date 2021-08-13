@@ -2,7 +2,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:twtr/twtr_repository.dart';
 import 'package:dartz/dartz.dart';
 
-final twitterControllerProvider = StateNotifierProvider<TwitterController, dynamic>((ref) {
+final twitterControllerProvider =
+    StateNotifierProvider<TwitterController, dynamic>((ref) {
   final twitterRepository = ref.watch(twitterRepositoryProvider);
 
   return TwitterController(twitterRepository);
