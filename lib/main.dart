@@ -36,7 +36,7 @@ class MyHomePage extends HookWidget {
               alignment: Alignment.topCenter,
               child: Text(
                 'Twtr',
-                style: Theme.of(context).textTheme.headline6!.copyWith(),
+                style: Theme.of(context).textTheme.headline4!.copyWith(),
               ),
             ),
           ),
