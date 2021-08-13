@@ -25,7 +25,24 @@ class MyHomePage extends HookWidget {
   Widget build(BuildContext context) {
     final tweetTextEditingController = useTextEditingController();
 
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          Container(
+            color: const Color(0xffE9EFFD),
+            padding: EdgeInsets.only(top: kToolbarHeight),
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Text(
+                'Twtr',
+                style: Theme.of(context).textTheme.headline6!.copyWith(),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
