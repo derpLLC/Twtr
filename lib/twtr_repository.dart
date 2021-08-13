@@ -38,7 +38,7 @@ class TwitterRepository {
   Future<Either<Failure, String>> post(String status) async {
     try {
       final tweet = await _twtrApi.tweetService.update(status: status);
-      return Right(tweet.fullText);
+      return Right(tweet.fullText as String);
     } on Response catch (response) {
       return Left(Failure(response.reasonPhrase as String));
     } on SocketException catch (_) {
