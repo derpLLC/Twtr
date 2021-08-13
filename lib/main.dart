@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'twtr-controller.dart';
+import 'twtr_repository.dart';
+
 void main() {
   runApp(ProviderScope(child: MyApp()));
 }
@@ -56,7 +59,9 @@ class MyHomePage extends HookWidget {
               children: [
                 Spacer(),
                 CustomInputField(
-                    textEditingController: tweetTextEditingController),
+                  onPressed: () => postTweet(context, tweetTextEditingController),
+                    textEditingController: tweetTextEditingController,
+                ),
               ],
             ),
           ),
@@ -64,13 +69,26 @@ class MyHomePage extends HookWidget {
       ),
     );
   }
+
+  void postTweet(BuildContext context,
+      TextEditingController tweetTextEditingController) async {
+    if (tweetTextEditingController.text.isEmpty) return;
+
+    final result = await context
+        .read(twitterControllerProvider)
+        .postTweet(tweetTextEditingController.text);
+    if(result.isRight()) {
+      tweetTextEditingController.clear();
+    }
+  }
 }
 
 class CustomInputField extends StatelessWidget {
-  const CustomInputField({Key? key, required this.textEditingController})
+  const CustomInputField({Key? key, required this.textEditingController, required this.onPressed})
       : super(key: key);
 
   final TextEditingController textEditingController;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
