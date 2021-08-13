@@ -81,6 +81,15 @@ class CustomInputField extends StatelessWidget {
       maxLines: 4,
       maxLength: 280,
       maxLengthEnforcement: MaxLengthEnforcement.enforced,
+      decoration: InputDecoration(
+        hintText: 'What\'s happening?',
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
+        fillColor: Color(0xffE9EFFD),
+        filled: true,
+      ),
     );
   }
 }
