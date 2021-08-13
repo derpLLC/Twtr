@@ -105,6 +105,15 @@ class CustomInputField extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           borderSide: BorderSide.none,
         ),
+        suffixIcon: ClipOval(
+          child: Material(
+            color: Colors.white.withOpacity(0),
+            child: IconButton(
+              onPressed: onPressed,
+              icon: Icon(Icons.send),
+            ),
+          ),
+        ),
         fillColor: Color(0xffE9EFFD),
         filled: true,
       ),
