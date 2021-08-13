@@ -41,11 +41,21 @@ class MyHomePage extends HookWidget {
             ),
           ),
           Container(
+            padding: EdgeInsets.all(12),
+            margin: EdgeInsets.only(top: kToolbarHeight * 2),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(42),
+                topRight: Radius.circular(42),
+              ),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Spacer(),
-                CustomInputField(textEditingController: tweetTextEditingController),
+                CustomInputField(
+                    textEditingController: tweetTextEditingController),
               ],
             ),
           ),
