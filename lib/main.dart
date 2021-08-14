@@ -132,14 +132,14 @@ class TweetResponse extends HookWidget {
           color: const Color(0xff2F3A5D),
         );
     return tweetControllerState.when(
-      data: (data) => Text(data.isEmpty ? "Write a new tweet" : 'Tweet: $data',
+      data: (data) => Text(data.isEmpty ? 'Write a new tweet 😊' : 'Tweet: $data',
           style: theme),
       loading: () => CircularProgressIndicator(),
       error: (err, sr) {
         if (err is Failure) {
           return Text(err.message, style: theme);
         }
-        return Text('An unexpected error occured', style: theme);
+        return Text('An unexpected error occured 😢', style: theme);
       },
     );
   }
