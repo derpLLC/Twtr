@@ -60,6 +60,7 @@ class MyHomePage extends HookWidget {
               children: [
                 Spacer(),
                 TweetResponse(),
+                Spacer(),
                 CustomInputField(
                   onPressed: () => postTweet(context, textEditingController),
                   textEditingController: textEditingController,
