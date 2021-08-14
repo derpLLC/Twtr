@@ -137,7 +137,7 @@ class TweetResponse extends HookWidget {
       loading: () => CircularProgressIndicator(),
       error: (err, sr) {
         if (err is Failure) {
-          return Text("An error occured");
+          return Text(err.message, style: theme);
         }
         return Text('An unexpected error occured', style: theme);
       },
