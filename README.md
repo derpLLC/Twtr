@@ -1,6 +1,6 @@
 # Twtr
 
-Twitter Clone built using Flutter with Twitter API.
+Twitter Clone built using Flutter with [Twitter API](https://developer.twitter.com/en).
 
 ## Plugins
 
